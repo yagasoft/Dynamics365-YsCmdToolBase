@@ -1,17 +1,11 @@
-# Dynamics365-YsCmdToolShell
+# Dynamics365-YsCmdletBase
 
+(shell is in alpha stage)
 
 ### Version: 0.0.2
 ---
 
-A command line shell-like program to provide a platform for tools to easily run, parse cmd args, update from the repository, and encapsulate common behaviour.
-
-(shell is in alpha stage)
-
-## Features
-
-  + 
-    + 
+PowerShell C# code that encapsulates some common tool behaviour, which accelerates and standardises command-line tool implementations.
 
 ## How To Use
 
