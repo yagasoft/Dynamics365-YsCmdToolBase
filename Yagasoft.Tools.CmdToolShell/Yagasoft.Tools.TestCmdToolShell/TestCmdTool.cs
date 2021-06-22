@@ -1,41 +1,36 @@
 ﻿#region Imports
 
 using System;
-using CommandLine;
+using System.Management.Automation;
 using Yagasoft.Libraries.Common;
-using Yagasoft.Tools.CmdToolTemplate.Attributes;
 using Yagasoft.Tools.CmdToolTemplate.Shell;
-using Yagasoft.Tools.CmdToolTemplate.Tool;
+using Yagasoft.Tools.Common.Config;
 
 #endregion
 
-namespace Yagasoft.Tools.TestCmdToolShell
+namespace Yagasoft.Tools.TestCmdletShell
 {
-	public class TestCmdTool : ICmdTool<Arguments>
+	[Cmdlet("Test", "Run")]
+	public class TestCmdTool : YsCmdletBase
 	{
-		private ShellArguments shellArgs;
-		private Arguments args;
-		private CrmLog log;
-
-		public void Initialise(ShellArguments shellArguments, Arguments toolArguments, CrmLog crmLog)
+		protected override void ExecuteLogic()
 		{
-			shellArgs = shellArguments;
-			args = toolArguments;
-			log = crmLog;
-		}
-
-		public void Run()
-		{
-			log.Log("Tool ran!");
-			log.Log($"Arg: {args.Test}");
+			Log.Log("Tool ran!");
+			Log.Log(GetWorkingDirectory());
 			throw new NotImplementedException();
 		}
-	}
 
-	[Verb("test", true, HelpText = "Run the tool.")]
-	public class Arguments : ToolArgumentsBase
-	{
-		[Option('x', "xtest", Required = true, HelpText = "Tool arg test.")]
-		public string Test { get; set; }
+		protected override LogParams GetLogParams()
+		{
+			return
+				new LogParams
+				{
+					FolderPath = "Logs",
+					FileSplitMode = SplitMode.Both,
+					Level = LogLevel.Debug,
+					FileSplitFrequency = SplitFrequency.Daily,
+					FileDateFormat = DateTime.Now.ToString("u")
+				};
+		}
 	}
 }

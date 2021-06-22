@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\LogParams.cs" />
     <Compile Include="Connections\ConnectionStringConfig.cs" />
     <Compile Include="Exceptions\ToolException.cs" />
     <Compile Include="Helpers\ConfigurationHelpers.cs" />
